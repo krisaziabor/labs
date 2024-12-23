@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 dotenv.config({ path: './private.env' });
 
-const apiKey = process.env.YALIES_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_YALIES_API_KEY;
 
 const HOST = 'https://yalies.io';
 const API_ROOT = '/api/';
@@ -93,17 +93,21 @@ async function findName(netid) {
     }
 }
 
-(async () => {
-    const first_name = 'Kris';
-    const surname = 'Aziabor';
-    const full_name = `${first_name} ${surname}`;
-    const netID = await findPeople(full_name, 'Timothy Dwight', '2026');
+async function verifyStatus(first, last, college, year) {
+    const netID = await findPeople(`${first} ${last}`, college, year);
     const name = await findName(netID);
-    if (name === full_name){
+    if (name === `${first} ${last}`){
         console.log('We found your details, please proceed');
+        return true;
     }
     else{
         console.log('We could not verify your details, please try again');
+        return false;
     }
+}
+
+(async () => {
+    await verifyStatus('Kris', 'Aziabor', 'Timothy Dwight', '2026');
 })();
 
+export { verifyStatus };
