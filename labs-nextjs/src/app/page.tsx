@@ -1,9 +1,10 @@
 'use client'
 
-import VerifyForm from '../app/components/form';
+
+import NameForm from './components/nameForm';
 
 export default function Home() {
   return (
-    <VerifyForm />
+    <NameForm />
   );
 }
