@@ -1,0 +1,59 @@
+name: PrivacyCountdownWidget
+options:
+  bundleIdPrefix: com.labs
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+targets:
+  PrivacyCountdownWidget-iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/App
+      - path: Sources/Shared
+    resources:
+      - path: Resources/Shared
+      - path: Resources/App
+    entitlements: Resources/App/PrivacyCountdownWidget.entitlements
+    info:
+      path: Resources/App/Info.plist
+  PrivacyCountdownWidget-macOS:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/App
+      - path: Sources/Shared
+    resources:
+      - path: Resources/Shared
+      - path: Resources/App
+    entitlements: Resources/App/PrivacyCountdownWidget.entitlements
+    info:
+      path: Resources/App/Info.plist
+  PrivacyCountdownWidgetWidgets-iOS:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/Widgets
+      - path: Sources/Shared
+    resources:
+      - path: Resources/Shared
+      - path: Resources/Widgets
+    entitlements: Resources/Widgets/PrivacyCountdownWidgetWidgets.entitlements
+    info:
+      path: Resources/Widgets/Info.plist
+    dependencies:
+      - target: PrivacyCountdownWidget-iOS
+  PrivacyCountdownWidgetWidgets-macOS:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: Sources/Widgets
+      - path: Sources/Shared
+    resources:
+      - path: Resources/Shared
+      - path: Resources/Widgets
+    entitlements: Resources/Widgets/PrivacyCountdownWidgetWidgets.entitlements
+    info:
+      path: Resources/Widgets/Info.plist
+    dependencies:
+      - target: PrivacyCountdownWidget-macOS
